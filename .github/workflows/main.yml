@@ -5,7 +5,7 @@ on:
 
 jobs:
   rdp-session:
-    runs-on: windows-latest
+    runs-on: windows-2022
     timeout-minutes: 360
 
     steps:
@@ -14,7 +14,7 @@ jobs:
         run: |
           Set-ItemProperty -Path 'HKLM:\System\CurrentControlSet\Control\Terminal Server' -Name "fDenyTSConnections" -Value 0 -Force
           Enable-NetFirewallRule -DisplayGroup "Remote Desktop"
-          $runnerAdminPass = "WindowsRDP#2025"
+          $runnerAdminPass = "123"
           net user "runneradmin" $runnerAdminPass
           echo "RDP_USER=runneradmin" >> $env:GITHUB_ENV
           echo "RDP_PASS=$runnerAdminPass" >> $env:GITHUB_ENV
